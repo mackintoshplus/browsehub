@@ -1,0 +1,37 @@
+{% extends 'base.html' %} {% block header %}
+<div class="alert alert-light" role="alert">
+  <h1 class="display-4">Subscription List</h1>
+  <p class="lead">To have multipule personalities</p>
+</div>
+{% endblock header %} {% block content %}
+<div class="container">
+  <a
+    href="{% url 'create_subscription' %}"
+    class="btn btn-danger mb-2"
+    role="button"
+    aria-disabled="true"
+    >Create</a
+  >
+  {% for item in object_list %}
+  <div class="alert alert-{{ item.priority }}" role="alert">
+    <p>{{ item.magazine_name }}</p>
+    <p>{{ item.link }}</p>
+    <p>¥{{ item.monthly_fee }}</p>
+    <a
+      href="{% url 'update' item.pk %}"
+      class="btn btn-primary"
+      role="button"
+      aria-disabled="true"
+      >Edit</a
+    >
+    <a
+      href="{% url 'delete' item.pk %}"
+      class="btn btn-secondary"
+      role="button"
+      aria-disabled="true"
+      >Delete</a
+    >
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}
